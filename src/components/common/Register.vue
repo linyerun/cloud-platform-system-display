@@ -1,7 +1,142 @@
 <template>
-    <div>注册界面</div>
+  <div class="login">
+    <div class="loginPart">
+      <h2>注册信息填写界面</h2>
+      <el-form>
+        <div class="inputElement">
+          <el-input v-model="name" placeholder="请输入用户名称"></el-input>
+        </div>
+        <div class="inputElement">
+          <el-input v-model="email" placeholder="请输入注册的邮箱地址"></el-input>
+        </div>
+        <div class="inputElement" style="margin-top: 10px;">
+          <el-input v-model="password" placeholder="请输入密码" type="password"></el-input>
+        </div>
+        <div class="inputElement" style="margin-top: 10px;">
+          <el-input v-model="captcha" placeholder="请输入验证码"></el-input>
+        </div>
+        <div style="text-align:center; margin-top: 10px">
+          <el-button type="primary" @click="toLoginPage">登录界面</el-button>
+          <el-button type="warning" @click="getCaptchaByEmail">获取验证码</el-button>
+          <el-button type="danger" @click="registerFunc">确认注册</el-button>
+        </div>
+      </el-form>
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {register, sendCaptchaToEmail} from '../../api/v0'
+import {ErrorInfo, SuccessInfo} from '../../utils/notice'
+import {saveData} from '../../utils/store_data'
 
-<style scoped></style>
+const email = ref<string>('')
+const password = ref<string>('')
+const captcha = ref<string>('')
+const name = ref<string>('')
+const router = useRouter()
+
+const toLoginPage = () => { router.push('/login') }
+const registerFunc = async () => {
+  // 1. 校验参数
+  if(email.value === '' || password.value === '' || captcha.value === '' || name.value === '') {
+    ErrorInfo('请输入完整信息, 注册信息不能存在空值')
+    return
+  }
+
+  // 2. 发送注册请求
+  const res = await register(email.value, password.value, name.value, captcha.value)
+
+  // 注册失败
+  if(res.code !== 200) {
+    ErrorInfo(res.msg)
+    return
+  }
+
+  // 保存token
+  saveData('Authorization', res.data.token)
+  saveData('RefreshAuthorization', res.data.refresh_token)
+
+  // 保存用户信息
+  saveData('user_name', res.data.user.name)
+  saveData('user_email', res.data.user.email)
+  saveData('user_auth', res.data.user.auth)
+
+  // 3. 跳转游客页面
+  await router.push('/visitor')
+}
+const getCaptchaByEmail = () => {
+  // 校验邮箱
+  if(email.value === '') {
+    ErrorInfo('请输入邮箱地址，不然无法发送验证码')
+    return
+  }
+
+  // 发送请求
+  sendCaptchaToEmail(email.value).then(res => {
+    if(res.code !== 200) {
+      ErrorInfo(res.msg)
+      ErrorInfo('发送验证码失败，请稍后再尝试')
+      return
+    }
+    SuccessInfo('发送验证码成功请注意查收')
+  })
+}
+
+</script>
+
+<style scoped>
+.loginPart {
+  position: absolute;
+  /*定位方式绝对定位absolute*/
+  top: 50%;
+  left: 50%;
+  /*顶和高同时设置50%实现的是同时水平垂直居中效果*/
+  transform: translate(-50%, -50%);
+  /*实现块元素百分比下居中*/
+  width: 450px;
+  padding: 50px;
+  background: rgba(0, 0, 0, .5);
+  /*背景颜色为黑色，透明度为0.8*/
+  box-sizing: border-box;
+  /*box-sizing设置盒子模型的解析模式为怪异盒模型，
+  将border和padding划归到width范围内*/
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+  /*边框阴影  水平阴影0 垂直阴影15px 模糊25px 颜色黑色透明度0.5*/
+  border-radius: 15px;
+  /*边框圆角，四个角均为15px*/
+}
+
+.loginPart h2 {
+  margin: 0 0 10px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  /*文字居中*/
+}
+
+/* 一开始没单独加导致失败了 */
+.inputElement {
+  margin-bottom: 10px;
+}
+
+.loginPart .inputElement input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+  /*margin: auto;*/
+  /*字符间的间距1px*/
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  /*outline用于绘制元素周围的线
+  outline：none在这里用途是将输入框的边框的线条使其消失*/
+  background: transparent;
+  /*背景颜色为透明*/
+}
+</style>

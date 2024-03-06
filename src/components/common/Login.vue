@@ -10,7 +10,7 @@
           <el-input v-model="password" placeholder="请输入密码" type="password"></el-input>
         </div>
         <div class="inputElement" style="margin-top: 10px;">
-          <el-input v-model="captcha" placeholder="请输入验证码" type="password"></el-input>
+          <el-input v-model="captcha" placeholder="请输入验证码"></el-input>
         </div>
         <div style="text-align:center; margin-top: 10px">
           <el-button type="primary" @click="loginFunc">登录</el-button>
@@ -52,13 +52,18 @@ const loginFunc = async () => {
   saveData('Authorization', res.data.token)
   saveData('RefreshAuthorization', res.data.refresh_token)
 
+  // 保存用户信息
+  saveData('user_name', res.data.user.name)
+  saveData('user_email', res.data.user.email)
+  saveData('user_auth', res.data.user.auth)
+
   // 调整到对应用户的主页
-  switch(res.data.auth) {
+  switch(res.data.user.auth) {
     case 0:
-      await router.push('/visitor')
+      await router.push('/visitor/user')
       break
     case 1:
-      await router.push('/user')
+      await router.push('/user/image_linux')
       break
     case 2:
       await router.push('/admin')
@@ -67,7 +72,7 @@ const loginFunc = async () => {
       await router.push('/super')
       break
     default:
-      ErrorInfo('系统异常，请联系管理员')
+      ErrorInfo('跳转失败')
   }
 }
 const registerFunc = () => { router.push('/register') }

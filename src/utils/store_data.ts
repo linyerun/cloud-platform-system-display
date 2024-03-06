@@ -5,3 +5,8 @@ export function saveData(key: string, value: string) {
 export function getData(key: string): string|null {
   return localStorage.getItem(key)
 }
+
+export function clearLocalData() {
+  sessionStorage.clear()
+  localStorage.clear()
+}

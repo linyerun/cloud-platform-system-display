@@ -1,13 +1,13 @@
 <template>
   <div style="height:50px; line-height: 50px; border-bottom: 1px solid #ccc; display: flex;">
     <div style="width:300px; padding-left: 30px; font-weight: bold; color: dodgerblue;">
-      公司销售管理系统 - {{ userType }}操作界面
+      虚拟云服务器系统 - {{ userType }}操作界面
     </div>
     <div style="flex: 1;"></div>
     <div style="width:100px;">
       <el-dropdown>
                 <span class="el-dropdown-link" style="line-height: 50px">
-                    {{ username }}
+                    {{ uname }}
                     <el-icon class="el-icon--right">
                         <arrow-down/>
                     </el-icon>
@@ -23,24 +23,28 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref, onBeforeMount} from 'vue'
 import {useRouter} from 'vue-router'
+import {getData, clearLocalData} from '../../utils/store_data'
 import {ArrowDown} from '@element-plus/icons-vue'
 
-const props = defineProps<{
-  userType: string
-}>()
-// 在setup语法糖里面这样用
-// console.log(props.userType)
+defineProps<{ userType: string }>()
 
 const router = useRouter()
-const username = ref<string>('')
+const uname = ref<string>('')
 
 const exit = () => {
   // 清除缓存
-  sessionStorage.clear()
-  localStorage.clear()
+  clearLocalData()
+
   // 进行路由跳转
-  router.push({path: '/login'})
+  router.push({path: '/'})
 }
+
+// 初始化uname的值
+onBeforeMount(()=>{
+  uname.value = getData('user_name') as string
+})
+
+
 </script>
