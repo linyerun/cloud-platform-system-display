@@ -16,6 +16,21 @@ import UserImageLinux from '../components/user/image/Linux.vue'
 import UserImageDb from '../components/user/image/Db.vue'
 import UserContainerLinux from '../components/user/container/Linux.vue'
 import UserContainerDb from '../components/user/container/Db.vue'
+import UserApplicationLinux from '../components/user/application/Linux.vue'
+import UserApplicationDb from '../components/user/application/Db.vue'
+
+import AdminIndex from '../components/admin/Index.vue'
+import AdminLinuxApplicationList from '../components/admin/application/LinuxList.vue'
+import AdminUserApplicationList from '../components/admin/application/UserList.vue'
+import AdminLinuxImageList from '../components/admin/image/LinuxList.vue'
+import AdminLinuxImagePull from '../components/admin/image/LinuxPull.vue'
+import AdminLinuxDbList from '../components/admin/image/DbList.vue'
+import AdminLinuxDbPull from '../components/admin/image/DbPull.vue'
+import AdminAsyncTaskList from '../components/admin/task/AsyncList.vue'
+
+import SuperIndex from '../components/super/Index.vue'
+import SuperAdminAdd from '../components/super/admin/AdminAdd.vue'
+import SuperErrorList from '../components/super/error/ErrorList.vue'
 
 const routes = [
   {
@@ -83,9 +98,78 @@ const routes = [
         path: 'container_db',
         name: 'ContainerDb',
         component: UserContainerDb
-      }
+      },
+      {
+        path: 'application_linux',
+        name: 'ApplicationLinux',
+        component: UserApplicationLinux
+      },
+      {
+        path: 'application_db',
+        name: 'ApplicationDb',
+        component: UserApplicationDb
+      },
     ]
   },
+  {
+    path: '/admin',
+    name: 'AdminIndex',
+    component: AdminIndex,
+    children: [
+      {
+        path: 'application_linux_list',
+        name: 'ApplicationLinuxList',
+        component: AdminLinuxApplicationList
+      },
+      {
+        path: 'application_user_list',
+        name: 'ApplicationUserList',
+        component: AdminUserApplicationList
+      },
+      {
+        path: 'linux_image_list',
+        name: 'LinuxImageList',
+        component: AdminLinuxImageList
+      },
+      {
+        path: 'linux_image_pull',
+        name: 'LinuxImagePull',
+        component: AdminLinuxImagePull
+      },
+      {
+        path: 'db_image_list',
+        name: 'DbImageList',
+        component: AdminLinuxDbList
+      },
+      {
+        path: 'db_image_pull',
+        name: 'DbImagePull',
+        component: AdminLinuxDbPull
+      },
+      {
+        path: 'task_async_list',
+        name: 'TaskAsyncList',
+        component: AdminAsyncTaskList
+      },
+    ]
+  },
+  {
+    path: '/super',
+    name: 'SuperIndex',
+    component: SuperIndex,
+    children: [
+      {
+        path: 'error_list',
+        name: 'ErrorList',
+        component: SuperErrorList
+      },
+      {
+        path: 'add_admin',
+        name: 'AddAdmin',
+        component: SuperAdminAdd
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

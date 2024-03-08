@@ -25,13 +25,13 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
-import {login, sendCaptchaToEmail} from '../../api/v0'
+import {login, sendCaptchaToEmail} from '../../api/common'
 import {ErrorInfo, SuccessInfo} from '../../utils/notice'
-import {saveData, getData} from '../../utils/store_data'
+import {saveData} from '../../utils/store_data'
 
-const email = ref<string>('')
-const password = ref<string>('')
-const captcha = ref<string>('')
+const email = ref<string>('2338244917@qq.com')
+const password = ref<string>('123456')
+const captcha = ref<string>('123456')
 const router = useRouter()
 
 const loginFunc = async () => {
@@ -66,10 +66,10 @@ const loginFunc = async () => {
       await router.push('/user/image_linux')
       break
     case 2:
-      await router.push('/admin')
+      await router.push('/admin/application_linux_list')
       break
     case 3:
-      await router.push('/super')
+      await router.push('/super/add_admin')
       break
     default:
       ErrorInfo('跳转失败')

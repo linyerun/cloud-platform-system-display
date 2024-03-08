@@ -1,5 +1,5 @@
 <template>
-  <div class="container">数据库镜像</div>
+  <div class="container">数据库申请单</div>
 </template>
 
 <script setup lang="ts">

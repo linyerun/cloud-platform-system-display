@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
-import {register, sendCaptchaToEmail} from '../../api/v0'
+import {register, sendCaptchaToEmail} from '../../api/common'
 import {ErrorInfo, SuccessInfo} from '../../utils/notice'
 import {saveData} from '../../utils/store_data'
 

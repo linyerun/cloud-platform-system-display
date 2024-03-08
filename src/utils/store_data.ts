@@ -1,9 +1,9 @@
 export function saveData(key: string, value: string) {
-  localStorage.setItem(key, value)
+  sessionStorage.setItem(key, value)
 }
 
 export function getData(key: string): string|null {
-  return localStorage.getItem(key)
+  return sessionStorage.getItem(key)
 }
 
 export function clearLocalData() {

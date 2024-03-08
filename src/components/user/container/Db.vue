@@ -1,5 +1,7 @@
 <template>
-  数据库实例
+  <div class="container">
+    数据库实例
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -4,22 +4,20 @@
     <el-sub-menu index="1">
       <template #title>
         <el-icon>
-          <Operation/>
+          <IconMenu/>
         </el-icon>
-        <span>系统介绍</span>
+        <span>管理员模块</span>
       </template>
-      <el-menu-item index="/visitor/user">用户介绍</el-menu-item>
-      <el-menu-item index="/visitor/function">功能介绍</el-menu-item>
-      <el-menu-item index="/visitor/apply">申请流程</el-menu-item>
+      <el-menu-item index="/super/add_admin">新增管理员</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
         <el-icon>
-          <IconMenu/>
+          <Operation/>
         </el-icon>
-        <span>申请模块</span>
+        <span>异常模块</span>
       </template>
-      <el-menu-item index="/visitor/apply_msg">申请资料填写</el-menu-item>
+      <el-menu-item index="/super/error_list">异常信息列表</el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {ErrorInfo} from './notice'
-import {useRouter} from 'vue-router'
+import router from '../router/index'  // TODO 为啥不能像Login.vue中用userRouter().push()进行跳转
 import {getData, saveData, clearLocalData} from './store_data'
 
 interface IData {
@@ -16,8 +16,8 @@ interface IOptions {
   params?: any
 }
 
-// const myBaseUrl = 'http://192.168.200.133:8888'
-const myBaseUrl = 'http://localhost:8888'
+const myBaseUrl = 'http://192.168.200.133:8888'
+// const myBaseUrl = 'http://localhost:8888'
 
 export const request = (options: IOptions) => {
   return new Promise<IData>((resolve, reject) => {
@@ -51,7 +51,7 @@ export const request = (options: IOptions) => {
             if (!ok) {
               clearLocalData()  // 清空数据
               ErrorInfo('登录失效, 请重新进行登录!') // 打出异常信息
-              await useRouter().push('/') // 跳回到首页
+              await router.push('/') // 跳回到首页
               return
             }
 
@@ -61,8 +61,9 @@ export const request = (options: IOptions) => {
 
           return response.data
         },
-        error => {
-          ErrorInfo('请求失败(被请求拦截器拦截)')
+        async error => {
+          ErrorInfo('请重新登录')
+          await router.push('/login')
           return Promise.reject(error)
         }
     )

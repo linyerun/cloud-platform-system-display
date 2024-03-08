@@ -6,30 +6,31 @@
         <el-icon>
           <Operation/>
         </el-icon>
-        <span>镜像模块</span>
+        <span>申请处理模块</span>
       </template>
-      <el-menu-item index="/user/image_linux">服务器镜像</el-menu-item>
-      <el-menu-item index="/user/image_db">数据库镜像</el-menu-item>
+      <el-menu-item index="/admin/application_linux_list">服务器申请单列表</el-menu-item>
+      <el-menu-item index="/admin/application_user_list">游客的申请单列表</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
         <el-icon>
           <IconMenu/>
         </el-icon>
-        <span>我的容器</span>
+        <span>镜像模块</span>
       </template>
-      <el-menu-item index="/user/container_linux">我的服务器</el-menu-item>
-      <el-menu-item index="/user/container_db">我的数据库</el-menu-item>
+      <el-menu-item index="/admin/linux_image_list">服务器镜像列表</el-menu-item>
+      <el-menu-item index="/admin/linux_image_pull">服务器镜像拉取</el-menu-item>
+      <el-menu-item index="/admin/db_image_list">数据库镜像列表</el-menu-item>
+      <el-menu-item index="/admin/db_image_pull">数据库镜像拉取</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="3">
       <template #title>
         <el-icon>
           <IconMenu/>
         </el-icon>
-        <span>我的申请</span>
+        <span>任务模块</span>
       </template>
-      <el-menu-item index="/user/application_linux">服务器申请单</el-menu-item>
-      <el-menu-item index="/user/application_db">数据库申请</el-menu-item>
+      <el-menu-item index="/admin/task_async_list">异步任务列表</el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
