@@ -8,3 +8,11 @@
 ## 使用原生axios发请求没有进行解构重命名
 - const {data: res} = await axios.create({baseURL: myBaseUrl,timeout: 60000}).put('/v5/token/refresh', null,{headers: {'Authorization': token}})
   - 如果直接 `const res = xxxx`，那么获取获取后端返回的code需要: `res.data.code`
+## flex
+- 想要给Aside加宽度，那就得给router-view加上 `flex: 1`
+```vue
+<div style="display: flex">
+  <Aside/>
+  <router-view style="flex: 1"/>
+</div>
+```
