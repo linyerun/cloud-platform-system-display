@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-openeds="['1']" :default-active="path" router style="width:250px; height: calc(100vh - 50px);"
            class="el-menu-vertical-demo">
-    <el-sub-menu index="1">
+    <el-sub-menu index="1" style="width: 250px">
       <template #title>
         <el-icon>
           <Operation/>
@@ -11,7 +11,7 @@
       <el-menu-item index="/user/image_linux">服务器镜像</el-menu-item>
       <el-menu-item index="/user/image_db">数据库镜像</el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="2">
+    <el-sub-menu index="2" style="width: 250px">
       <template #title>
         <el-icon>
           <IconMenu/>
@@ -21,7 +21,7 @@
       <el-menu-item index="/user/container_linux">我的服务器</el-menu-item>
       <el-menu-item index="/user/container_db">我的数据库</el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="3">
+    <el-sub-menu index="3" style="width: 250px">
       <template #title>
         <el-icon>
           <IconMenu/>

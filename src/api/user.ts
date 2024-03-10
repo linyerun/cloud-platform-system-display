@@ -99,3 +99,100 @@ export function changeLinuxStatus(container_id: string, status: number) {
 export function deleteLinux(container_id: string) {
   return request({method: 'delete', url: `/v2/linux_container/${container_id}`})
 }
+
+export interface DbImage {
+  id: string
+  creator_id: string
+  type: string
+  name: string
+  tag: string
+  username: string
+  password: string
+  image_id: string
+  size: number
+  port: number
+  created_at: number
+}
+
+export function getDbImageList() {
+  return request({
+    method: 'get',
+    url: '/v2/user/db-image/list'
+  })
+}
+
+export interface UserMsg {
+  name: string
+  email: string
+}
+
+export function getUserMsgById(id: string) {
+  return request({
+    method: 'get',
+    url: `/v2/admin/${id}`
+  })
+}
+
+export interface DBApplyForm {
+  db_name: string
+  image_id: string
+  explanation: string
+}
+
+export function applyForDbInstance(form: DBApplyForm) {
+  return request({
+    method: 'post',
+    url: '/v2/user/apply/db',
+    data:form
+  })
+}
+
+export interface DbInstance {
+  id: string
+  user_id: string
+  name: string
+  db_container_name: string
+  image_id: string
+  create_at: number
+  start_time: number
+  stop_time: number
+  status: number
+  host: string
+  port: number
+  type: string
+  username: string
+  password: string
+}
+
+export function getDbInstanceList() {
+  return request({
+    method: 'get',
+    url: '/v2/db-container/list'
+  })
+}
+
+export function updateDbStatusById(db_id: string, status: number) {
+  return request({
+    method: 'put',
+    url: `/v2/db-container/change/${db_id}/${status}`
+  })
+}
+
+export interface DbApplication {
+  id: string
+  user_id: string
+  explanation: string
+  reject_reason: string
+  image_id: string
+  db_name: string
+  status: number
+  create_at: number
+  finish_at: number
+}
+
+export function getDbApplication() {
+  return request({
+    method: 'get',
+    url: '/v2/myself/db-application/list'
+  })
+}

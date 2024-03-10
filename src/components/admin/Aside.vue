@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-openeds="['1']" :default-active="path" router style="width:250px; height: calc(100vh - 50px);"
            class="el-menu-vertical-demo">
-    <el-sub-menu index="1">
+    <el-sub-menu index="1" style="width: 250px">
       <template #title>
         <el-icon>
           <Operation/>
@@ -9,9 +9,10 @@
         <span>申请处理模块</span>
       </template>
       <el-menu-item index="/admin/application_linux_list">服务器申请单列表</el-menu-item>
+      <el-menu-item index="/admin/application_db_list">数据库申请单列表</el-menu-item>
       <el-menu-item index="/admin/application_user_list">游客的申请单列表</el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="2">
+    <el-sub-menu index="2" style="width: 250px">
       <template #title>
         <el-icon>
           <IconMenu/>
@@ -23,7 +24,7 @@
       <el-menu-item index="/admin/db_image_list">数据库镜像列表</el-menu-item>
       <el-menu-item index="/admin/db_image_pull">数据库镜像拉取</el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="3">
+    <el-sub-menu index="3" style="width: 250px">
       <template #title>
         <el-icon>
           <IconMenu/>

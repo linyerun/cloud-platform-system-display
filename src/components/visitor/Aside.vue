@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-openeds="['1']" :default-active="path" router style="width:250px; height: calc(100vh - 50px);"
            class="el-menu-vertical-demo">
-    <el-sub-menu index="1">
+    <el-sub-menu index="1" style="width: 250px">
       <template #title>
         <el-icon>
           <Operation/>
@@ -12,7 +12,7 @@
       <el-menu-item index="/visitor/function">功能介绍</el-menu-item>
       <el-menu-item index="/visitor/apply">申请流程</el-menu-item>
     </el-sub-menu>
-    <el-sub-menu index="2">
+    <el-sub-menu index="2" style="width: 250px">
       <template #title>
         <el-icon>
           <IconMenu/>

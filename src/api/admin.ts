@@ -154,3 +154,106 @@ export function postPullImageTask(task: ImagePullReq) {
     data: task
   })
 }
+
+export interface DbImage {
+  id: string
+  creator_id: string
+  type: string
+  name: string
+  tag: string
+  username: string
+  password: string
+  image_id: string
+  size: number
+  port: number
+  created_at: number
+}
+
+export function getDbImageList() {
+  return request({
+    method: 'get',
+    url: '/v3/db-image/list'
+  })
+}
+
+export interface DbImagePullTask {
+  image_name: string
+  image_tag: string
+  type: string
+  port: number
+}
+
+export function createDbImageTask(task: DbImagePullTask) {
+  return request({
+    method: 'post',
+    url: '/v3/db-image/pull',
+    data: task
+  })
+}
+
+export function removeDbImageById(id: string) {
+  return request({
+    method: 'delete',
+    url: `/v3/db-image/${id}`
+  })
+}
+
+export interface DbApplication {
+  id: string
+  user_id: string
+  explanation: string
+  reject_reason: string
+  image_id: string
+  db_name: string
+  status: number
+  create_at: number
+  finish_at: number
+}
+
+export function getDbApplicationList() {
+  return request({
+    method: 'get',
+    url: '/v3/db-application/list'
+  })
+}
+
+export interface Db_image {
+  id: string;
+  creator_id: string;
+  type: string;
+  name: string;
+  tag: string;
+  username: string;
+  password: string;
+  image_id: string;
+  size: number;
+  port: number;
+  created_at: number;
+}
+
+export interface User_msg {
+  email: string;
+  name: string;
+}
+
+export interface DbImageMsg {
+  db_image: Db_image;
+  user_msg: User_msg;
+}
+
+export function getDbImageById(id: string) {
+  return request({
+    method: 'get',
+    url: `/v3/db-image/${id}`
+  })
+}
+
+export function changeDbApplicationStatus(id: string, reject_reason: string, status: number) {
+  return request({
+    method: 'put',
+    url: `/v3/db-application/${id}/${status}`,
+    data: {
+      'reject_reason': reject_reason,
+    }
+  })
+}

@@ -21,6 +21,7 @@ import UserApplicationDb from '../components/user/application/Db.vue'
 
 import AdminIndex from '../components/admin/Index.vue'
 import AdminLinuxApplicationList from '../components/admin/application/LinuxList.vue'
+import AdminDbApplicationList from '../components/admin/application/DbList.vue'
 import AdminUserApplicationList from '../components/admin/application/UserList.vue'
 import AdminLinuxImageList from '../components/admin/image/LinuxList.vue'
 import AdminLinuxImagePull from '../components/admin/image/LinuxPull.vue'
@@ -120,6 +121,11 @@ const routes = [
         path: 'application_linux_list',
         name: 'ApplicationLinuxList',
         component: AdminLinuxApplicationList
+      },
+      {
+        path: 'application_db_list',
+        name: 'ApplicationDbList',
+        component: AdminDbApplicationList
       },
       {
         path: 'application_user_list',
