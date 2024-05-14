@@ -41,6 +41,7 @@
 import {ref, Ref, onBeforeMount} from 'vue'
 import {getAsyncTaskList, AsyncTask} from '../../../api/admin'
 import {ErrorInfo} from "../../../utils/notice";
+// @ts-ignore
 import {JsonViewer} from "vue3-json-viewer"
 import "vue3-json-viewer/dist/index.css"
 

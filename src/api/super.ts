@@ -25,3 +25,10 @@ export function getExceptionList() {
     url: '/v4/exception/list'
   })
 }
+
+export function deleteExceptionByIdx(idx: number) {
+   return request({
+     method: 'delete',
+     url: `/v4/exception/${idx}`
+   })
+}

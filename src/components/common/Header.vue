@@ -4,7 +4,7 @@
       虚拟云服务器系统 - {{ userType }}操作界面
     </div>
     <div style="flex: 1;"></div>
-    <div style="width:100px;">
+    <div style="margin-right: 30px">
       <el-dropdown>
                 <span class="el-dropdown-link" style="line-height: 50px">
                     {{ uname }}

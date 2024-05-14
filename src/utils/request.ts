@@ -16,7 +16,8 @@ interface IOptions {
   params?: any
 }
 
-const myBaseUrl = 'http://192.168.200.133:8888'
+// const myBaseUrl = 'http://192.168.200.133:8888'
+const myBaseUrl = 'https://lyr.daluotang.cc'
 // const myBaseUrl = 'http://localhost:8888'
 
 export const request = (options: IOptions) => {
